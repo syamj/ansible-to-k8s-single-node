@@ -117,12 +117,25 @@
        name: kubelet
        enabled: yes
 
-   - name: Reboot all the kubernetes nodes.
-     reboot:
-       post_reboot_delay: 50
-       reboot_timeout: 160
-       connect_timeout: 180
-       test_command: uptime
+    - name: restart machine
+      shell: 'sleep 2 && shutdown -r now "Ansible updates triggered"'
+      async: 1
+      poll: 0
+      ignore_errors: true
+
+    - name: waiting for server to come back
+      local_action: wait_for
+        host=nodes
+        port=22
+        delay=10
+        timeout=120
+
+#   - name: Reboot all the kubernetes nodes.
+#     reboot:
+#       post_reboot_delay: 50
+#       reboot_timeout: 160
+#       connect_timeout: 180
+#       test_command: uptime
 
    - name: Intilizing Kubernetes Cluster
      command: kubeadm init --pod-network-cidr=10.244.0.0/16
