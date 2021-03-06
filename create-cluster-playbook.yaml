@@ -123,12 +123,7 @@
      poll: 0
      ignore_errors: true
 
-   - name: waiting for server to come back
-     local_action: wait_for
-       host=nodes
-       port=22
-       delay=10
-       timeout=120
+   - pause: seconds=45
 
 #   - name: Reboot all the kubernetes nodes.
 #     reboot:
