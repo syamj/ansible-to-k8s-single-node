@@ -1,5 +1,5 @@
 ---
-- hosts: vagrant
+- hosts: nodes
   tasks:
       - name: Ping the hosts
             ping:
