@@ -4,8 +4,10 @@
   become: yes
   become_method: sudo
   become_user: root
-  gather_facts: yes
-  
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python
 
   tasks:
    
