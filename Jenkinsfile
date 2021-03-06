@@ -4,6 +4,7 @@ node {
     deleteDir()
     checkout scm
     
+    wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
         ansiblePlaybook(
             playbook: 'ping.yml',
             inventory: 'hosts',
@@ -16,6 +17,7 @@ node {
 stage "Deploy"
 
 node {
+    wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
         ansiblePlaybook(
             playbook: 'create-cluster-playbook.yaml',
             inventory: 'hosts',
