@@ -1,0 +1,13 @@
+- hosts: "nodes"
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+
+  tasks:
+  - name: Destroy Kubernetes Cluster
+    command: kubeadm reset --force
+    become: true
+  - pause: seconds=30
+
