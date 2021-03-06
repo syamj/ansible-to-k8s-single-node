@@ -1,3 +1,3 @@
 [nodes]
-single_node ansible_host=10.10.0.182 ansible_user=ubuntu
-
+#single_node ansible_host=10.10.0.182 ansible_user=ubuntu
+single_node ansible_host=172.31.18.25 ansible_user=ubuntu

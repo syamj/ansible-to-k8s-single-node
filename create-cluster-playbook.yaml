@@ -76,6 +76,7 @@
        name:
          - containerd.io
        state: present
+     register: install_containerd_result
 
    - name: Configure containerd.
      file:
@@ -122,8 +123,10 @@
      async: 1
      poll: 0
      ignore_errors: true
+     when: install_containerd_result is changed
 
    - pause: seconds=45
+     when: install_containerd_result is changed
 
 #   - name: Reboot all the kubernetes nodes.
 #     reboot:
