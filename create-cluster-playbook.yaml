@@ -151,6 +151,7 @@
      when: "not kubernetes_status.stdout or 'running' not in kubernetes_status.stdout"
 
    - pause: seconds=30
+     when: "not kubernetes_status.stdout or 'running' not in kubernetes_status.stdout"
 
    - name: Create directory for kube config.
      become_user: ubuntu
@@ -189,12 +190,14 @@
      become_user: ubuntu
      become_method: sudo
      become: yes
+     when: "not kubernetes_status.stdout or 'running' not in kubernetes_status.stdout"
      command: "{{ item }}"
      with_items: 
         - kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
         - kubectl taint nodes --all node-role.kubernetes.io/master-
 
    - pause: seconds=30
+     when: "not kubernetes_status.stdout or 'running' not in kubernetes_status.stdout"
 
    - name: Get the token for joining the nodes with Kuberentes master.
      shell: kubeadm token create  --print-join-command
