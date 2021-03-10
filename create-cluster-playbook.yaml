@@ -9,6 +9,9 @@
   tasks:
 
    - name: Check kubernetes status.
+     become_user: ubuntu
+     become_method: sudo
+     become: yes
      command: kubectl cluster-info
      register: kubernetes_status
      changed_when: false
