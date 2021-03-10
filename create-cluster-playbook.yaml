@@ -6,13 +6,14 @@
   become_user: root
   gather_facts: yes
 
-    - name: Check Minikube's status.
+  tasks:
+
+    - name: Check kubernetes status.
       command: kubectl cluster-info
       register: kubernetes_status
       changed_when: false
       ignore_errors: true
 
-  tasks:
    
    - name: Make the Swap inactive
      command: swapoff -a
