@@ -8,11 +8,11 @@
 
   tasks:
 
-    - name: Check kubernetes status.
-      command: kubectl cluster-info
-      register: kubernetes_status
-      changed_when: false
-      ignore_errors: true
+   - name: Check kubernetes status.
+     command: kubectl cluster-info
+     register: kubernetes_status
+     changed_when: false
+     ignore_errors: true
 
    
    - name: Make the Swap inactive
